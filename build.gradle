@@ -22,3 +22,11 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext {
+    nav_version = "2.3.1"
+    lifecycle_version = "2.2.0"
+    arch_version = "2.1.0"
+    sdp = "1.0.6"
+    material_design="1.2.1"
+}
