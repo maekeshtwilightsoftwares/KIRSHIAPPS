@@ -13,7 +13,7 @@ import com.twilight.kirshiapps.R;
 import com.twilight.kirshiapps.databinding.FragmentRegisterBinding;
 import com.twilight.kirshiapps.utils.Validation;
 
-class RegisterFragment extends Fragment {
+public class RegisterFragment extends Fragment {
 
     private FragmentRegisterBinding fragmentRegisterBinding;
     private Validation validate;

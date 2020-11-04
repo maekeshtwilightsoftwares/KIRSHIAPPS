@@ -62,7 +62,7 @@ public class LoginFragment extends Fragment {
         });
 
         fragmentLoginBinding.tvRegisterAccount.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigate(R.id.registerFragment);
+            Navigation.findNavController(v).navigate(R.id.action_loginFragment_to_registerFragment);
         });
 
     }
