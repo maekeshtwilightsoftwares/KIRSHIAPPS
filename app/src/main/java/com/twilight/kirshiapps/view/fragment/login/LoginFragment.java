@@ -29,16 +29,13 @@ public class LoginFragment extends Fragment {
 
     private LoginFragmentViewModel viewModel;
     private FragmentLoginBinding fragmentLoginBinding;
-    private Validation validate;
+    private View view;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        dataObserver();
     }
 
-    private void dataObserver() {
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,6 +48,7 @@ public class LoginFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        this.view = view;
         viewModel = new ViewModelProvider(getActivity()).get(LoginFragmentViewModel.class);
 
         initViews();
@@ -63,7 +61,9 @@ public class LoginFragment extends Fragment {
         viewModel.live.observe(requireActivity(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
-                Toast.makeText(requireContext(), s, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(requireContext(), s, Toast.LENGTH_SHORT).show();
+                LoginFragmentDirections.ActionLoginFragmentToHomeFragment action = LoginFragmentDirections.actionLoginFragmentToHomeFragment(fragmentLoginBinding.etPhoneNumber.getText().toString());
+                Navigation.findNavController(view).navigate(action);
             }
         });
 
@@ -78,9 +78,6 @@ public class LoginFragment extends Fragment {
 
     private void setActionListener() {
         fragmentLoginBinding.btnLogin.setOnClickListener(v -> {
-            if (checkValidation(fragmentLoginBinding.etPhoneNumber.getText().toString())) {
-                LoginFragmentDirections.ActionLoginFragmentToHomeFragment action = LoginFragmentDirections.actionLoginFragmentToHomeFragment(fragmentLoginBinding.etPhoneNumber.getText().toString());
-                Navigation.findNavController(v).navigate(action);
             if (checkValidation(viewModel.getPhoneNumber())) {
                 viewModel.loginAccount();
             } else {
@@ -131,9 +128,5 @@ public class LoginFragment extends Fragment {
         fragmentLoginBinding.tvRegisterAccount.append(createAccount);
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-    }
 
 }
