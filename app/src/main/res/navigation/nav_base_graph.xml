@@ -36,5 +36,13 @@
     <fragment
         android:id="@+id/transactionFragmentList"
         android:name="com.twilight.kirshiapps.view.fragment.transcation.TransactionListFragment"
-        android:label="TransactionFragmentList" />
+        android:label="TransactionFragmentList" >
+        <action
+            android:id="@+id/action_transactionFragmentList_to_transactionDetailFragment"
+            app:destination="@id/transactionDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/transactionDetailFragment"
+        android:name="com.twilight.kirshiapps.view.fragment.transcation.TransactionDetailFragment"
+        android:label="TransactionDetailFragment" />
 </navigation>

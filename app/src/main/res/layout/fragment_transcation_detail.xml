@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="viewModel"
+            type="com.twilight.kirshiapps.view.fragment.transcation.TransactionDetailViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_ride"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.97" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.03" />
+
+        <include
+            android:id="@+id/include_toolbar"
+            layout="@layout/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/rv_transaction_number"
+            style="@style/textViewMedium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="25dp"
+            android:gravity="start"
+            android:textColor="@color/black"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toStartOf="@+id/tv_transaction_type"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/include_toolbar"
+            tools:text="@string/send_money" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/rv_transaction_amount"
+            style="@style/textViewSmaller"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:gravity="start"
+            app:layout_constraintEnd_toStartOf="@+id/tv_transaction_type"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rv_transaction_number"
+            tools:text="@string/inr" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/rv_transaction_received"
+            style="@style/textViewSmaller"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:gravity="start"
+            app:layout_constraintEnd_toStartOf="@+id/tv_transaction_type"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rv_transaction_amount"
+            tools:text="@string/inr" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/rv_transaction_sender"
+            style="@style/textViewSmaller"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:gravity="start"
+            app:layout_constraintEnd_toStartOf="@+id/tv_transaction_type"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rv_transaction_received"
+            tools:text="@string/inr" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_transaction_type"
+            style="@style/textViewSmaller"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_70sdp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/ic_debit"
+            android:paddingTop="@dimen/_5sdp"
+            android:paddingBottom="@dimen/_5sdp"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/rv_transaction_sender"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/rv_transaction_number"
+            tools:text="@string/debit" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
