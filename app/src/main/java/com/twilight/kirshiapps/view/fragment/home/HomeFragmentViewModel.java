@@ -35,6 +35,7 @@ public class HomeFragmentViewModel extends ViewModel {
     MutableLiveData<String > live = new MutableLiveData<String>();
     MutableLiveData<String > error = new MutableLiveData<String>();
     MutableLiveData<List<TransactionEntity> > transList = new MutableLiveData<List<TransactionEntity>>();
+    MutableLiveData<Integer> userType = new MutableLiveData<Integer>();
 
     public void getAccount(){
 
@@ -45,6 +46,7 @@ public class HomeFragmentViewModel extends ViewModel {
                     public void onSuccess(@NonNull UserEntity userEntity) {
                         if(userEntity != null){
                             live.postValue(userEntity.walletAmount);
+                            userType.postValue(userEntity.userType);
                         }
                         else {
                             error.postValue("User Not Found");

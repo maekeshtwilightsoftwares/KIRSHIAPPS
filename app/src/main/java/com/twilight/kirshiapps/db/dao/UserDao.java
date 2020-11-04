@@ -29,7 +29,7 @@ public interface UserDao {
     Completable insertAll(UserEntity users);
 
     @Insert
-    void insert(UserEntity users);
+    void insert(UserEntity... users);
 
     @Delete
     void delete(UserEntity user);

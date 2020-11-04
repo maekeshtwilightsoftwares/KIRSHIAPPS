@@ -26,6 +26,7 @@ import com.twilight.kirshiapps.view.fragment.login.LoginFragmentDirections;
 import java.util.List;
 
 import static com.twilight.kirshiapps.BaseActivity.phoneNumberS;
+import static com.twilight.kirshiapps.BaseActivity.userType;
 
 public class HomeFragment extends Fragment {
 
@@ -50,6 +51,19 @@ public class HomeFragment extends Fragment {
                 fragmentHomeBinding.tvWalletAmount.setText(s+" INR");
                 viewModel.currAmount = s;
                 viewModel.getTransList();
+            }
+        });
+
+        viewModel.userType.observe(requireActivity(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer s) {
+
+                if(s == 1){
+                    fragmentHomeBinding.tvWalletAmount.setText("Default Number");
+                    fragmentHomeBinding.tvWallet.setText("User Type");
+                    userType = s;
+                }
+
             }
         });
 
@@ -100,9 +114,11 @@ public class HomeFragment extends Fragment {
         fragmentHomeBinding.includeSendAmount.getRoot().setVisibility(View.VISIBLE);
 
         fragmentHomeBinding.includeSendAmount.btnSend.setOnClickListener(view -> {
+            if(userType == 0)
             validateSendMoney(fragmentHomeBinding.includeSendAmount.etAmount.getText().toString(),
                     fragmentHomeBinding.includeSendAmount.etPhoneNumber.getText().toString());
-
+            else
+                Toast.makeText(requireContext(), "Access Denied", Toast.LENGTH_SHORT).show();
         });
 
     }

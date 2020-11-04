@@ -15,6 +15,7 @@ import io.reactivex.schedulers.Schedulers;
 
 import static com.twilight.kirshiapps.BaseActivity.kirshDB;
 import static com.twilight.kirshiapps.BaseActivity.phoneNumberS;
+import static com.twilight.kirshiapps.BaseActivity.userType;
 
 public class TranscationListFragmentViewModel extends ViewModel {
 
@@ -22,19 +23,37 @@ public class TranscationListFragmentViewModel extends ViewModel {
 
     public void getTransList(){
 
-        kirshDB.transactionDao().findByPhoneNumber(phoneNumberS).subscribeOn(Schedulers.computation())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new DisposableSingleObserver<List<TransactionEntity>>() {
-                    @Override
-                    public void onSuccess(@NonNull List<TransactionEntity> transactionEntities) {
-                        transList.postValue(transactionEntities);
-                    }
+        if(userType == 0){
+            kirshDB.transactionDao().findByPhoneNumber(phoneNumberS).subscribeOn(Schedulers.computation())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new DisposableSingleObserver<List<TransactionEntity>>() {
+                        @Override
+                        public void onSuccess(@NonNull List<TransactionEntity> transactionEntities) {
+                            transList.postValue(transactionEntities);
+                        }
 
-                    @Override
-                    public void onError(@NonNull Throwable e) {
+                        @Override
+                        public void onError(@NonNull Throwable e) {
 
-                    }
-                });
+                        }
+                    });
+        }else{
+            kirshDB.transactionDao().getAll().subscribeOn(Schedulers.computation())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new DisposableSingleObserver<List<TransactionEntity>>() {
+                        @Override
+                        public void onSuccess(@NonNull List<TransactionEntity> transactionEntities) {
+                            transList.postValue(transactionEntities);
+                        }
+
+                        @Override
+                        public void onError(@NonNull Throwable e) {
+
+                        }
+                    });
+
+        }
+
 
     }
 }
