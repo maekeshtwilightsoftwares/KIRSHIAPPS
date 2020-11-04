@@ -68,7 +68,7 @@ public class LoginFragment extends Fragment {
         });
 
         fragmentLoginBinding.tvRegisterAccount.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigate(R.id.registerFragment);
+            Navigation.findNavController(v).navigate(R.id.action_loginFragment_to_registerFragment);
         });
 
         fragmentLoginBinding.etPhoneNumber.addTextChangedListener(new TextWatcher() {
@@ -92,7 +92,7 @@ public class LoginFragment extends Fragment {
     }
 
     private Boolean checkValidation(String phoneNumber) {
-        return Validation.isEmptyOrNot(phoneNumber) || Validation.isValidNumber(phoneNumber);
+        return validate.isNotEmpty(phoneNumber) && validate.isValidNumber(phoneNumber);
     }
 
     private void initViews() {
