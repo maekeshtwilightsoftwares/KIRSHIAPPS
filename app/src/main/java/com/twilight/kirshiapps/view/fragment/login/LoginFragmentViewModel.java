@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-class LoginFragmentViewModel extends ViewModel{
+public class LoginFragmentViewModel extends ViewModel{
 
     String phoneNumber;
 
@@ -15,10 +15,11 @@ class LoginFragmentViewModel extends ViewModel{
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-}
 
     MutableLiveData<String > live = new MutableLiveData<String>();
 
+
 }
+
 
 
