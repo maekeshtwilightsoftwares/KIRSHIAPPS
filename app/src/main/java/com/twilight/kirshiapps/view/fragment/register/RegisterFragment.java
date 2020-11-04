@@ -23,6 +23,8 @@ import com.twilight.kirshiapps.databinding.FragmentRegisterBinding;
 import com.twilight.kirshiapps.utils.Validation;
 import com.twilight.kirshiapps.view.fragment.login.LoginFragmentDirections;
 
+import static com.twilight.kirshiapps.BaseActivity.sharedPreference;
+
 public class RegisterFragment extends Fragment {
 
     private FragmentRegisterBinding fragmentRegisterBinding;
@@ -41,7 +43,7 @@ public class RegisterFragment extends Fragment {
             @Override
             public void onChanged(String s) {
                 Toast.makeText(requireContext(), s, Toast.LENGTH_SHORT).show();
-
+                sharedPreference.storePhoneNumber(fragmentRegisterBinding.etPhoneNumber.getText().toString());
                 RegisterFragmentDirections.ActionRegisterFragmentToHomeFragment action = RegisterFragmentDirections.actionRegisterFragmentToHomeFragment(viewModel.getPhoneNumber());
                 Navigation.findNavController(view).navigate(action);
 

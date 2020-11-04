@@ -26,6 +26,7 @@ import com.twilight.kirshiapps.view.fragment.login.LoginFragmentDirections;
 import java.util.List;
 
 import static com.twilight.kirshiapps.BaseActivity.phoneNumberS;
+import static com.twilight.kirshiapps.BaseActivity.sharedPreference;
 
 public class HomeFragment extends Fragment {
 
@@ -90,7 +91,7 @@ public class HomeFragment extends Fragment {
 
     private void initViews() {
         fragmentHomeBinding.includeToolbar.title.setText(getString(R.string.home));
-        viewModel.setPhoneNumber(HomeFragmentArgs.fromBundle(getArguments()).getPhoneNumber());
+        viewModel.setPhoneNumber(sharedPreference.getUserPhoneNumber());
         phoneNumberS = viewModel.getPhoneNumber();
         viewModel.getAccount();
         fragmentHomeBinding.tvPhoneNumber.setText(viewModel.getPhoneNumber());

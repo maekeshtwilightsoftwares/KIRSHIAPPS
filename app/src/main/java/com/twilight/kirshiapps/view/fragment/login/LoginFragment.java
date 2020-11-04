@@ -25,6 +25,8 @@ import com.twilight.kirshiapps.R;
 import com.twilight.kirshiapps.databinding.FragmentLoginBinding;
 import com.twilight.kirshiapps.utils.Validation;
 
+import static com.twilight.kirshiapps.BaseActivity.sharedPreference;
+
 public class LoginFragment extends Fragment {
 
     private LoginFragmentViewModel viewModel;
@@ -62,6 +64,7 @@ public class LoginFragment extends Fragment {
             @Override
             public void onChanged(String s) {
 //                Toast.makeText(requireContext(), s, Toast.LENGTH_SHORT).show();
+                sharedPreference.storePhoneNumber(fragmentLoginBinding.etPhoneNumber.getText().toString());
                 LoginFragmentDirections.ActionLoginFragmentToHomeFragment action = LoginFragmentDirections.actionLoginFragmentToHomeFragment(viewModel.getPhoneNumber());
                 Navigation.findNavController(view).navigate(action);
             }
