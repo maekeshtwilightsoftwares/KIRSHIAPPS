@@ -4,16 +4,15 @@ import android.text.TextUtils;
 import android.widget.EditText;
 
 import static com.twilight.kirshiapps.utils.Constants.MAX_PHONE_NUMBER;
+import static com.twilight.kirshiapps.utils.Constants.MIN_PHONE_NUMBER;
 
-class Validation {
+public class Validation {
 
-
-
-    public Boolean isEmptyOrNot(String data) {
+    public static Boolean isEmptyOrNot(String data) {
         return TextUtils.isEmpty(data);
     }
 
-    public Boolean isValidNumber(String data) {
-        return data.length()>=MAX_PHONE_NUMBER;
+    public static Boolean isValidNumber(String data) {
+        return data.length()>=MIN_PHONE_NUMBER && data.length()<MAX_PHONE_NUMBER;
     }
 }
