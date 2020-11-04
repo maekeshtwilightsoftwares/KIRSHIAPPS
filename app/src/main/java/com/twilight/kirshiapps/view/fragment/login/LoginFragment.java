@@ -29,19 +29,20 @@ public class LoginFragment extends Fragment {
 
     private LoginFragmentViewModel viewModel;
     private FragmentLoginBinding fragmentLoginBinding;
-
+    private Validation validate;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        dataObserver();
+    }
 
+    private void dataObserver() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-//        return inflater.inflate(R.layout.fragment_login, container, false);
-
         fragmentLoginBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false);
         return fragmentLoginBinding.getRoot();
     }
@@ -77,6 +78,9 @@ public class LoginFragment extends Fragment {
 
     private void setActionListener() {
         fragmentLoginBinding.btnLogin.setOnClickListener(v -> {
+            if (checkValidation(fragmentLoginBinding.etPhoneNumber.getText().toString())) {
+                LoginFragmentDirections.ActionLoginFragmentToHomeFragment action = LoginFragmentDirections.actionLoginFragmentToHomeFragment(fragmentLoginBinding.etPhoneNumber.getText().toString());
+                Navigation.findNavController(v).navigate(action);
             if (checkValidation(viewModel.getPhoneNumber())) {
                 viewModel.loginAccount();
             } else {

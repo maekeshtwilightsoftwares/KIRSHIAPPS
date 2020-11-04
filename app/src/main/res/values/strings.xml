@@ -13,4 +13,14 @@
     <string name="create_account_register">Create Account</string>
     <string name="already_had_account">Already have a account? Login</string>
     <string name="had_account">Already have a account?</string>
+    <string name="title">Title</string>
+    <string name="wallet_amount">Wallet Amount</string>
+    <string name="inr">100 INR</string>
+    <string name="home">Home</string>
+    <string name="enter_amount">Please enter the amount</string>
+    <string name="send_money">Send money</string>
+    <string name="transfer">Transfer amount</string>
+    <string name="transcation">Transcation details</string>
+    <string name="logout">Logout</string>
+    <string name="send">Send</string>
 </resources>
