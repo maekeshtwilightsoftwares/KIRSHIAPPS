@@ -1,12 +1,31 @@
 package com.twilight.kirshiapps.db;
 
+import android.content.Context;
+
 import androidx.room.Database;
+import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import com.twilight.kirshiapps.db.dao.UserDao;
 import com.twilight.kirshiapps.db.entity.UserEntity;
 
 @Database(entities = {UserEntity.class}, version = 1)
 public abstract class KirshDB extends RoomDatabase {
 
-    public abstract UserEntity userEntity();
+    private static volatile KirshDB INSTANCE;
+
+    public abstract UserDao userDao();
+
+    public static KirshDB getInstance(Context context) {
+        if (INSTANCE == null) {
+            synchronized (KirshDB.class) {
+                if (INSTANCE == null) {
+                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
+                            KirshDB.class, "KirshDatabase.db")
+                            .build();
+                }
+            }
+        }
+        return INSTANCE;
+    }
 }

@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
@@ -22,7 +23,6 @@ import android.widget.Toast;
 
 import com.twilight.kirshiapps.R;
 import com.twilight.kirshiapps.databinding.FragmentLoginBinding;
-import com.twilight.kirshiapps.db.DbConnection;
 import com.twilight.kirshiapps.utils.Validation;
 
 public class LoginFragment extends Fragment {
@@ -54,14 +54,31 @@ public class LoginFragment extends Fragment {
 
         initViews();
         setActionListener();
+        dataObserver();
     }
 
+    public void dataObserver(){
+
+        viewModel.live.observe(requireActivity(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                Toast.makeText(requireContext(), s, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        viewModel.error.observe(requireActivity(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                Toast.makeText(requireContext(), s, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
 
     private void setActionListener() {
         fragmentLoginBinding.btnLogin.setOnClickListener(v -> {
             if (checkValidation(viewModel.getPhoneNumber())) {
-
+                viewModel.loginAccount();
             } else {
                 Toast.makeText(requireContext(), getString(R.string.enter_valid_phone), Toast.LENGTH_SHORT).show();
             }
@@ -92,7 +109,7 @@ public class LoginFragment extends Fragment {
     }
 
     private Boolean checkValidation(String phoneNumber) {
-        return validate.isNotEmpty(phoneNumber) && validate.isValidNumber(phoneNumber);
+        return Validation.isNotEmpty(phoneNumber) && Validation.isValidNumber(phoneNumber);
     }
 
     private void initViews() {

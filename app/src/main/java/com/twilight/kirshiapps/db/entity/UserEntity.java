@@ -14,7 +14,7 @@ public class UserEntity {
     public String phonenumber;
 
     @ColumnInfo(name = "user_type")
-    public String userType;
+    public int userType;
 
     @ColumnInfo(name = "wallet_amount")
     public String walletAmount;

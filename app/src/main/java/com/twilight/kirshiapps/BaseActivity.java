@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.twilight.kirshiapps.db.DbConnection;
+import com.twilight.kirshiapps.db.KirshDB;
 
 public class BaseActivity extends AppCompatActivity {
+
+    public static KirshDB kirshDB = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,6 +18,6 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     private void initDB() {
-        DbConnection.getInstance().setupDB(getApplicationContext());
+        kirshDB =  KirshDB.getInstance(getApplicationContext());
     }
 }
