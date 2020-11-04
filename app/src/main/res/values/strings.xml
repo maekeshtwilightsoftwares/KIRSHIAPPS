@@ -23,4 +23,6 @@
     <string name="transcation">Transcation details</string>
     <string name="logout">Logout</string>
     <string name="send">Send</string>
+    <string name="credit">Credit</string>
+    <string name="debit">Debit</string>
 </resources>
