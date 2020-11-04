@@ -4,18 +4,20 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 
 import com.twilight.kirshiapps.R;
-import com.twilight.kirshiapps.utils.Validation;
 
 public class LoginFragment extends Fragment {
 
@@ -31,7 +33,6 @@ public class LoginFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_login, container, false);
-
     }
 
     @Override
@@ -40,6 +41,44 @@ public class LoginFragment extends Fragment {
 
         viewModel = new ViewModelProvider(this).get(LoginFragmentViewModel.class);
 
+        initViews();
+        setActionListener();
+
+    }
+
+    private void setActionListener() {
+        fragmentLoginBinding.btnLogin.setOnClickListener(v -> {
+            if (checkValidation(fragmentLoginBinding.etPhoneNumber.getText().toString())) {
+
+            } else {
+                Toast.makeText(requireContext(), getString(R.string.enter_valid_phone), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        fragmentLoginBinding.tvRegisterAccount.setOnClickListener(v -> {
+            Navigation.findNavController(v).navigate(R.id.registerFragment);
+        });
+
+    }
+
+    private Boolean checkValidation(String phoneNumber) {
+        return validate.isEmptyOrNot(phoneNumber) || validate.isValidNumber(phoneNumber);
+    }
+
+    private void initViews() {
+        validate = new Validation();
+        setRegisteredText();
+    }
+
+    private void setRegisteredText() {
+        Spannable registerText = new SpannableString(getString(R.string.register_account));
+        registerText.setSpan(new ForegroundColorSpan(ContextCompat.getColor(requireContext(), R.color.light_grey_100)), 0, registerText.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        fragmentLoginBinding.tvRegisterAccount.setText(registerText);
+
+        Spannable createAccount = new SpannableString(getString(R.string.create_account));
+        createAccount.setSpan(new ForegroundColorSpan(ContextCompat.getColor(requireContext(), R.color.green)), 0, createAccount.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        fragmentLoginBinding.tvRegisterAccount.append(" ");
+        fragmentLoginBinding.tvRegisterAccount.append(createAccount);
     }
 
     @Override
@@ -76,7 +115,7 @@ public class LoginFragment extends Fragment {
 
                 if(Validation.isValidNumber(viewModel.getPhoneNumber())){
 
-                    
+
                 }
 
             }

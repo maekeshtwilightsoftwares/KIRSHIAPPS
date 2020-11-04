@@ -1,5 +1,7 @@
 package com.twilight.kirshiapps.view.fragment.login;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 class LoginFragmentViewModel extends ViewModel{
@@ -14,3 +16,9 @@ class LoginFragmentViewModel extends ViewModel{
         this.phoneNumber = phoneNumber;
     }
 }
+
+    MutableLiveData<String > live = new MutableLiveData<String>();
+
+}
+
+

@@ -34,24 +34,24 @@
             app:layout_constraintGuide_percent="0.3" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_welcome"
+            android:id="@+id/create_register"
             style="@style/textViewHeader"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/welcome_back"
+            android:text="@string/create_account_register"
             app:layout_constraintEnd_toStartOf="@+id/gl_ride"
             app:layout_constraintStart_toStartOf="@+id/gl_left"
             app:layout_constraintTop_toTopOf="@+id/gl_top" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_sign_to_continue"
+            android:id="@+id/tv_create_account"
             style="@style/textViewSmaller"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/sign_to_continue"
+            android:text="@string/create_account"
             app:layout_constraintEnd_toStartOf="@+id/gl_ride"
             app:layout_constraintStart_toStartOf="@+id/gl_left"
-            app:layout_constraintTop_toBottomOf="@+id/tv_welcome" />
+            app:layout_constraintTop_toBottomOf="@+id/create_register" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout"
@@ -64,18 +64,19 @@
             android:layout_marginRight="@dimen/_20sdp"
             app:layout_constraintEnd_toStartOf="@+id/gl_ride"
             app:layout_constraintStart_toStartOf="@+id/gl_left"
-            app:layout_constraintTop_toBottomOf="@+id/tv_sign_to_continue">
+            app:layout_constraintTop_toBottomOf="@+id/tv_create_account">
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/et_phone_number"
-            style="@style/editTextMedium"
-            android:background="@android:color/white"
-            android:hint="@string/phone_number"
-            android:inputType="number"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_phone_number"
+                style="@style/editTextMedium"
+                android:background="@android:color/white"
+                android:hint="@string/phone_number"
+                android:maxLength="10"
+                android:inputType="number"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_login"
+            android:id="@+id/btn_register"
             style="@style/buttonMedium"
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginLeft="@dimen/_20sdp"
@@ -83,13 +84,13 @@
             android:layout_marginEnd="@dimen/_20sdp"
             android:layout_marginRight="20dp"
             android:background="@color/green"
-            android:text="@string/login"
+            android:text="@string/create_account_register"
             app:layout_constraintEnd_toStartOf="@+id/gl_ride"
             app:layout_constraintStart_toStartOf="@+id/gl_left"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_register_account"
+            android:id="@+id/tv_already_account"
             style="@style/textViewSmaller"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -98,7 +99,7 @@
             android:layout_marginEnd="@dimen/_20sdp"
             android:layout_marginRight="@dimen/_20sdp"
             android:layout_marginBottom="@dimen/_30sdp"
-            tools:text="@string/create_account_tools"
+            android:text="@string/already_had_account"
             android:textSize="@dimen/_12ssp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/gl_ride"
