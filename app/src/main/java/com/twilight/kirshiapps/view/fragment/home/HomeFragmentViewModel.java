@@ -61,6 +61,31 @@ public class HomeFragmentViewModel extends ViewModel {
 
     }
 
+    public void checkNumber(String phoneNumber,SetOnPhoneNumberCheck setOnPhoneNumberCheck ){
+
+        kirshDB.userDao().findByPhoneNumber(phoneNumber).subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DisposableSingleObserver<UserEntity>() {
+                    @Override
+                    public void onSuccess(@NonNull UserEntity userEntity) {
+                        if(userEntity != null){
+                            setOnPhoneNumberCheck.OnPhoneNumberCheck(true);
+                        }
+                        else {
+                            setOnPhoneNumberCheck.OnPhoneNumberCheck(false);
+                        }
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+
+                        setOnPhoneNumberCheck.OnPhoneNumberCheck(false);
+
+                    }
+                });
+
+    }
+
 
     public void getTransList(){
 
@@ -118,5 +143,10 @@ public class HomeFragmentViewModel extends ViewModel {
                         });
 
 
+    }
+
+    interface SetOnPhoneNumberCheck{
+
+        public void OnPhoneNumberCheck(boolean isValid);
     }
 }

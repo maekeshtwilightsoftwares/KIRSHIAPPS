@@ -43,7 +43,6 @@ public class HomeFragment extends Fragment {
         viewModel.live.observe(requireActivity(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
-//                Toast.makeText(requireContext(), s, Toast.LENGTH_SHORT).show();
                 fragmentHomeBinding.tvWalletAmount.setText(s+" INR");
                 viewModel.currAmount = s;
                 viewModel.getTransList();
@@ -53,9 +52,8 @@ public class HomeFragment extends Fragment {
         viewModel.transList.observe(requireActivity(), new Observer<List<TransactionEntity>>() {
             @Override
             public void onChanged(List<TransactionEntity> s) {
-//                Toast.makeText(requireContext(), s, Toast.LENGTH_SHORT).show();
-                calculateAmount(s);
-                fragmentHomeBinding.tvWalletAmount.setText(calculateAmount(s)+" INR");
+                viewModel.currAmount = calculateAmount(s);
+                fragmentHomeBinding.tvWalletAmount.setText(viewModel.currAmount+" INR");
             }
         });
 
@@ -96,8 +94,9 @@ public class HomeFragment extends Fragment {
         fragmentHomeBinding.includeSendAmount.getRoot().setVisibility(View.VISIBLE);
 
         fragmentHomeBinding.includeSendAmount.btnSend.setOnClickListener(view -> {
-            viewModel.createTransactionDebit(fragmentHomeBinding.includeSendAmount.etAmount.getText().toString(),
+            validateSendMoney(fragmentHomeBinding.includeSendAmount.etAmount.getText().toString(),
                     fragmentHomeBinding.includeSendAmount.etPhoneNumber.getText().toString());
+
         });
 
     }
@@ -106,6 +105,32 @@ public class HomeFragment extends Fragment {
     public View onCreateView( LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         fragmentHomeBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
         return fragmentHomeBinding.getRoot();
+    }
+
+    private boolean validateSendMoney(String amount, String phoneNumberTo){
+        boolean sendamount = false;
+        if(Integer.parseInt(amount) < Integer.parseInt(viewModel.currAmount)){
+            sendamount = true;
+        }
+
+        if(sendamount){
+
+            viewModel.checkNumber(phoneNumberTo, new HomeFragmentViewModel.SetOnPhoneNumberCheck() {
+                @Override
+                public void OnPhoneNumberCheck(boolean isValid) {
+                    if(isValid){
+                        viewModel.createTransactionDebit(amount,phoneNumberTo);
+                    }else{
+                        Toast.makeText(requireContext(), getString(R.string.enter_user_phone), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            });
+        }else {
+            Toast.makeText(requireContext(), "Amount entered is not sufficient", Toast.LENGTH_SHORT).show();
+        }
+
+        return sendamount;
     }
 
     private void showDialog() {
