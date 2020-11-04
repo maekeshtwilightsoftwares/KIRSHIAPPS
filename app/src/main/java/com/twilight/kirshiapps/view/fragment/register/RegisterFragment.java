@@ -16,15 +16,18 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.twilight.kirshiapps.R;
 import com.twilight.kirshiapps.databinding.FragmentRegisterBinding;
 import com.twilight.kirshiapps.utils.Validation;
+import com.twilight.kirshiapps.view.fragment.login.LoginFragmentDirections;
 
 public class RegisterFragment extends Fragment {
 
     private FragmentRegisterBinding fragmentRegisterBinding;
     private RegisterFragmentViewModel viewModel;
+    View view;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,9 @@ public class RegisterFragment extends Fragment {
             @Override
             public void onChanged(String s) {
                 Toast.makeText(requireContext(), s, Toast.LENGTH_SHORT).show();
+
+                RegisterFragmentDirections.ActionRegisterFragmentToHomeFragment action = RegisterFragmentDirections.actionRegisterFragmentToHomeFragment(viewModel.getPhoneNumber());
+                Navigation.findNavController(view).navigate(action);
 
             }
         });
@@ -105,6 +111,7 @@ public class RegisterFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        this.view = view;
         setRegisteredText();
     }
 

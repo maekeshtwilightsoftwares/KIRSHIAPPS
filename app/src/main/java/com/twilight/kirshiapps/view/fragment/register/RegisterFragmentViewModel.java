@@ -44,7 +44,7 @@ public class RegisterFragmentViewModel extends ViewModel{
         userEntityinsert.uid = 10000 + new Random().nextInt(90000);
         userEntityinsert.phonenumber = phoneNumber;
         userEntityinsert.userType = 0;
-        userEntityinsert.walletAmount = "0";
+        userEntityinsert.walletAmount = "500";
 
         UserDao userDao = kirshDB.userDao();
 

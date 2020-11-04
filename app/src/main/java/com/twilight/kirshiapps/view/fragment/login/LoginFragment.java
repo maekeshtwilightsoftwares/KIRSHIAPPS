@@ -62,7 +62,7 @@ public class LoginFragment extends Fragment {
             @Override
             public void onChanged(String s) {
 //                Toast.makeText(requireContext(), s, Toast.LENGTH_SHORT).show();
-                LoginFragmentDirections.ActionLoginFragmentToHomeFragment action = LoginFragmentDirections.actionLoginFragmentToHomeFragment(fragmentLoginBinding.etPhoneNumber.getText().toString());
+                LoginFragmentDirections.ActionLoginFragmentToHomeFragment action = LoginFragmentDirections.actionLoginFragmentToHomeFragment(viewModel.getPhoneNumber());
                 Navigation.findNavController(view).navigate(action);
             }
         });

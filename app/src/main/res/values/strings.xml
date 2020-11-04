@@ -18,6 +18,7 @@
     <string name="inr">100 INR</string>
     <string name="home">Home</string>
     <string name="enter_amount">Please enter the amount</string>
+    <string name="enter_phoneNumber">Please enter the Phone number</string>
     <string name="send_money">Send money</string>
     <string name="transfer">Transfer amount</string>
     <string name="transcation">Transcation details</string>
