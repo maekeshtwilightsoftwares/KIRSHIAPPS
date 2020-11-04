@@ -17,6 +17,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.twilight.kirshiapps.R;
 import com.twilight.kirshiapps.databinding.FragmentHomeBinding;
@@ -164,7 +165,18 @@ public class HomeFragment extends Fragment {
             dialog.dismiss();
             navigateToTranscationScreen();
         });
+
+        Button logoutBtn = dialog.findViewById(R.id.btn_logout);
+        logoutBtn.setOnClickListener(v -> {
+            dialog.dismiss();
+            navigateToLoginScreen();
+        });
         dialog.show();
+    }
+
+    private void navigateToLoginScreen() {
+        sharedPreference.clearSharedPreference();
+        Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_loginFragment);
     }
 
     private void navigateToTranscationScreen() {
