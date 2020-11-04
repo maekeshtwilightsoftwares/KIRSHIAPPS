@@ -94,8 +94,11 @@ public class RegisterFragment extends Fragment {
         });
 
         fragmentRegisterBinding.tvAlreadyAccount.setOnClickListener(v ->{
+            Navigation.findNavController(v).navigate(R.id.action_registerFragment_pop);
+        });
 
-//            viewModel.getAll();
+        fragmentRegisterBinding.ivBack.setOnClickListener(v->{
+            requireActivity().onBackPressed();
         });
     }
 
