@@ -12,12 +12,13 @@ import com.twilight.kirshiapps.R;
 import com.twilight.kirshiapps.db.entity.TransactionEntity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder> {
 
-    private ArrayList<TransactionEntity> dataList;
+    private List<TransactionEntity> dataList;
 
-    public TransactionAdapter(ArrayList<TransactionEntity> list) {
+    public TransactionAdapter(List<TransactionEntity> list) {
         this.dataList = list;
     }
 
@@ -31,9 +32,10 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     @Override
     public void onBindViewHolder(@NonNull TransactionViewHolder holder, int position) {
         TransactionEntity data = dataList.get(position);
-        holder.tvTranscationNumber.setText(data.trabsactID);
+        holder.tvTranscationNumber.setText(data.transactionID);
         holder.tvAmount.setText(data.amount);
-        if (data.userType == 0) {
+        holder.rv_transaction_phone_number.setText(data.sentNumber);
+        if (data.creditType == 0) {
             holder.tvTranscationType.setText(holder.tvTranscationType.getContext().getString(R.string.debit));
             holder.tvTranscationType.setBackgroundResource(R.color.red);
         } else {
@@ -49,12 +51,13 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     }
 
     public class TransactionViewHolder extends RecyclerView.ViewHolder {
-        public AppCompatTextView tvTranscationNumber, tvAmount, tvTranscationType;
+        public AppCompatTextView tvTranscationNumber, tvAmount, tvTranscationType, rv_transaction_phone_number;
         public TransactionViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTranscationNumber = itemView.findViewById(R.id.rv_transaction_number);
             tvAmount = itemView.findViewById(R.id.rv_transaction_amount);
             tvTranscationType = itemView.findViewById(R.id.tv_transaction_type);
+            rv_transaction_phone_number = itemView.findViewById(R.id.rv_transaction_phone_number);
         }
     }
 }

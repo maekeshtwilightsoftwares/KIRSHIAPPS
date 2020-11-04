@@ -21,6 +21,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="@dimen/_10sdp"
             android:clipToPadding="false">
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -42,19 +43,34 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/rv_transaction_amount"
+                style="@style/textViewSmallerBold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="start"
+                app:layout_constraintEnd_toStartOf="@+id/tv_transaction_type"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rv_transaction_number"
+                tools:text="@string/inr" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/rv_transaction_phone_number"
                 style="@style/textViewSmaller"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
                 android:gravity="start"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/tv_transaction_type"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rv_transaction_number"
-                tools:text="@string/inr" />
+                app:layout_constraintTop_toBottomOf="@+id/rv_transaction_amount"
+                tools:text="9632588988" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_transaction_type"

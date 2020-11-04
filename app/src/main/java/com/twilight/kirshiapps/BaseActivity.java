@@ -9,6 +9,7 @@ import com.twilight.kirshiapps.db.KirshDB;
 public class BaseActivity extends AppCompatActivity {
 
     public static KirshDB kirshDB = null;
+    public static String phoneNumberS = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
