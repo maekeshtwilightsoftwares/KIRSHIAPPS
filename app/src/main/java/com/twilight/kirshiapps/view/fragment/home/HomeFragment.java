@@ -9,8 +9,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
@@ -39,9 +37,12 @@ public class HomeFragment extends Fragment {
     }
 
     private void setActionListener() {
-
         fragmentHomeBinding.includeToolbar.ivAction.setOnClickListener(v-> {
             showDialog();
+        });
+
+        fragmentHomeBinding.homeContainer.setOnClickListener(v -> {
+            fragmentHomeBinding.includeSendAmount.getRoot().setVisibility(View.GONE);
         });
     }
 
@@ -58,7 +59,6 @@ public class HomeFragment extends Fragment {
     }
 
     private void showDialog() {
-
         final Dialog dialog = new Dialog(requireContext());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_send_amount);
@@ -72,7 +72,10 @@ public class HomeFragment extends Fragment {
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         Button dialogButton = (Button) dialog.findViewById(R.id.btn_send);
-        dialogButton.setOnClickListener(v -> dialog.dismiss());
+        dialogButton.setOnClickListener(v -> {
+            fragmentHomeBinding.includeSendAmount.getRoot().setVisibility(View.VISIBLE);
+            dialog.dismiss();
+        });
         dialog.show();
     }
 
