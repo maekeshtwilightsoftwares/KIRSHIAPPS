@@ -55,7 +55,8 @@ public class LoginFragment extends Fragment {
     private void setActionListener() {
         fragmentLoginBinding.btnLogin.setOnClickListener(v -> {
             if (checkValidation(fragmentLoginBinding.etPhoneNumber.getText().toString())) {
-
+                LoginFragmentDirections.ActionLoginFragmentToHomeFragment action = LoginFragmentDirections.actionLoginFragmentToHomeFragment(fragmentLoginBinding.etPhoneNumber.getText().toString());
+                Navigation.findNavController(v).navigate(action);
             } else {
                 Toast.makeText(requireContext(), getString(R.string.enter_valid_phone), Toast.LENGTH_SHORT).show();
             }
