@@ -6,5 +6,8 @@
     <string name="sign_to_continue">Sign to continue</string>
     <string name="phone_number">Phone number</string>
     <string name="login">Login</string>
-    <string name="create_account">Don\'t have account? Create a new account</string>
+    <string name="create_account_tools">Don\'t have account? Create a new account</string>
+    <string name="register_account">Don\'t have account? </string>
+    <string name="create_account">Create a new account</string>
+    <string name="enter_valid_phone">Please enter valid phone number</string>
 </resources>

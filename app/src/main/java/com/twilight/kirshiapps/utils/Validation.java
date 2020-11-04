@@ -5,7 +5,7 @@ import android.widget.EditText;
 
 import static com.twilight.kirshiapps.utils.Constants.MAX_PHONE_NUMBER;
 
-class Validation {
+public class Validation {
 
 
 
@@ -14,6 +14,6 @@ class Validation {
     }
 
     public Boolean isValidNumber(String data) {
-        return data.length()>=MAX_PHONE_NUMBER;
+        return data.length()>MAX_PHONE_NUMBER;
     }
 }
