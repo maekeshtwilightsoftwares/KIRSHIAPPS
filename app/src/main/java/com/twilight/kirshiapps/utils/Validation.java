@@ -9,11 +9,11 @@ public class Validation {
 
 
 
-    public Boolean isEmptyOrNot(String data) {
-        return TextUtils.isEmpty(data);
+    public Boolean isNotEmpty(String data) {
+        return !TextUtils.isEmpty(data);
     }
 
     public Boolean isValidNumber(String data) {
-        return data.length()>MAX_PHONE_NUMBER;
+        return data.length()==10;
     }
 }

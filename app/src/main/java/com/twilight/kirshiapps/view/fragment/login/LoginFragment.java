@@ -68,7 +68,7 @@ public class LoginFragment extends Fragment {
     }
 
     private Boolean checkValidation(String phoneNumber) {
-        return validate.isEmptyOrNot(phoneNumber) || validate.isValidNumber(phoneNumber);
+        return validate.isNotEmpty(phoneNumber) && validate.isValidNumber(phoneNumber);
     }
 
     private void initViews() {

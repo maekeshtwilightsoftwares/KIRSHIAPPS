@@ -12,4 +12,5 @@
     <string name="enter_valid_phone">Please enter valid phone number</string>
     <string name="create_account_register">Create Account</string>
     <string name="already_had_account">Already have a account? Login</string>
+    <string name="had_account">Already have a account?</string>
 </resources>
