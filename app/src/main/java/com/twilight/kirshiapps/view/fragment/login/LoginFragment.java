@@ -1,6 +1,6 @@
 package com.twilight.kirshiapps.view.fragment.login;
 
-import android.graphics.Color;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -19,7 +20,6 @@ import android.widget.Toast;
 
 import com.twilight.kirshiapps.R;
 import com.twilight.kirshiapps.databinding.FragmentLoginBinding;
-import com.twilight.kirshiapps.databinding.FragmentLoginBindingImpl;
 import com.twilight.kirshiapps.utils.Validation;
 
 public class LoginFragment extends Fragment {
@@ -61,6 +61,10 @@ public class LoginFragment extends Fragment {
             }
         });
 
+        fragmentLoginBinding.tvRegisterAccount.setOnClickListener(v -> {
+            Navigation.findNavController(v).navigate(R.id.registerFragment);
+        });
+
     }
 
     private Boolean checkValidation(String phoneNumber) {
@@ -70,7 +74,6 @@ public class LoginFragment extends Fragment {
     private void initViews() {
         validate = new Validation();
         setRegisteredText();
-
     }
 
     private void setRegisteredText() {
