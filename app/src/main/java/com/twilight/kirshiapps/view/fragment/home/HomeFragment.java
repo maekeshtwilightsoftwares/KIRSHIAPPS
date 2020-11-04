@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
+import androidx.navigation.Navigation;
 
 import com.twilight.kirshiapps.R;
 import com.twilight.kirshiapps.databinding.FragmentHomeBinding;
@@ -29,6 +30,7 @@ public class HomeFragment extends Fragment {
     private FragmentHomeBinding fragmentHomeBinding;
     private HomeFragmentViewModel viewModel;
 
+    private View view;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,6 +71,7 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        this.view = view;
         initViews();
         setActionListener();
     }
@@ -146,12 +149,22 @@ public class HomeFragment extends Fragment {
         window.setAttributes(wlp);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-        Button dialogButton = (Button) dialog.findViewById(R.id.btn_send);
-        dialogButton.setOnClickListener(v -> {
+        Button sendBtn = (Button) dialog.findViewById(R.id.btn_send);
+        sendBtn.setOnClickListener(v -> {
             sendMoney();
             dialog.dismiss();
         });
+
+        Button transactionBtn = dialog.findViewById(R.id.btn_transcation);
+        transactionBtn.setOnClickListener(v-> {
+            dialog.dismiss();
+            navigateToTranscationScreen();
+        });
         dialog.show();
+    }
+
+    private void navigateToTranscationScreen() {
+        Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_transactionFragmentList);
     }
 
     public String calculateAmount(List<TransactionEntity> transListentity){

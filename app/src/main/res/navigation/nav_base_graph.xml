@@ -33,5 +33,12 @@
         <argument
             android:name="phoneNumber"
             app:argType="string" />
+        <action
+            android:id="@+id/action_homeFragment_to_transactionFragmentList"
+            app:destination="@id/transactionFragmentList" />
     </fragment>
+    <fragment
+        android:id="@+id/transactionFragmentList"
+        android:name="com.twilight.kirshiapps.view.fragment.transcation.TransactionListFragment"
+        android:label="TransactionFragmentList" />
 </navigation>
